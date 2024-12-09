@@ -2,7 +2,7 @@ package dev.redstudio.alfheim.lighting;
 
 import dev.redstudio.alfheim.api.IChunkLightingData;
 import dev.redstudio.alfheim.utils.DeduplicatedLongQueue;
-import dev.redstudio.redcore.math.ClampUtil;
+import dev.redstudio.alfheim.utils.ClampUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.profiler.Profiler;

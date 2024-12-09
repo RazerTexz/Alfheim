@@ -1,0 +1,38 @@
+name: Squash Commits
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: 'Amount of commits to be squashed'
+        default: '1'
+        required: true
+        type: number
+      commit_message:
+        description: 'The commit message'
+        default: ''
+        required: true
+        type: string
+      commit_description:
+        description: 'The commit description, use \n for multiple lines'
+        default: ''
+        required: false
+        type: string
+
+jobs:
+  squash_commits:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: $(( ${{ fromJson(inputs.commit) }} + 1))
+
+      - name: Squash Commits
+        run: |
+          git config --local user.name 'github-actions[bot]'
+          git config --local user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull
+          git reset --soft HEAD~${{ fromJson(inputs.commit) }}
+          git commit -m $'${{ inputs.commit_message }}\n${{ inputs.commit_description }}'
+          git push --force-with-lease
