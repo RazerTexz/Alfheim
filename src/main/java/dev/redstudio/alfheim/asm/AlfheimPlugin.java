@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import static dev.redstudio.alfheim.ProjectConstants.ID;
-import static dev.redstudio.alfheim.ProjectConstants.LOGGER;
 import static dev.redstudio.alfheim.ProjectConstants.NAME;
 
 /**
@@ -70,7 +69,6 @@ public final class AlfheimPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader
             return false;
         }
 
-        LOGGER.warn("Cubic Chunks was detected, it uses it's own lighting engine, {} will not load", NAME);
         return true;
     }
 }
